@@ -1,8 +1,8 @@
-from flask import Flask, Blueprint, request
+from flask import Flask, Blueprint, request,render_template
 
 home = Blueprint("home",__name__)
 
 @home.route("/")
 def index():
-    return"<h1>Hello World</h1><p>This is flask </p>"
+    return  "<h1>This is homepage</h1>"
 

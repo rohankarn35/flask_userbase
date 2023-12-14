@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint,request
+from flask import *
 
 user = Blueprint("user",__name__)
 
@@ -6,11 +6,17 @@ user = Blueprint("user",__name__)
 
 def users():
     if request.method == "POST":
-        return "Create new user"
+        # return request.form
+        return redirect(url_for("user.create"))
     else:
-        return "Hello all user"
+        return render_template('users/index.html')
+
+@user.route("/user/create")
+
+def create():
+    return render_template("users/create.html")
 
 @user.route("/user/<int:userID>")
 
 def userinfo(userID):
-    return f"<h2>User Info: {userID}</h2>"
+    return render_template('users/show.html',id=userID)
