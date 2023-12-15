@@ -1,4 +1,6 @@
 from flask import *
+from app import *
+from app.models.user import User as Usermodel
 
 user = Blueprint("user",__name__)
 
@@ -9,7 +11,8 @@ def users():
         # return request.form
         return redirect(url_for("user.create"))
     else:
-        return render_template('users/index.html')
+        users = Usermodel.query.all()
+        return render_template('users/index.html',users=users)
 
 @user.route("/user/create")
 
